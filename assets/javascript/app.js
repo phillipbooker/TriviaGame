@@ -1,21 +1,32 @@
 //Declare game variables
-var questionBank;
+var questionBank = [];
 var gameQuestion;
 var gameState;
 var rightCount;
 var wrongCount;
 //var correctAnswer;
 
-//Create questions
-var fQuestion = makeQuestion("Who is the coolest?", ["Goku", "Batman", "Spider-Man", "Pikachu"]);
-console.log(fQuestion.correctAnswer());
+//Fill questionBank
+// var fQuestion = makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"]);
+
+questionBank.push(makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"]));
+questionBank.push(makeQuestion("Who killed Krillin on Planet Namek?", ["Freiza", "Piccolo", "Vegeta", "Captain Ginyu"]));
+questionBank.push(makeQuestion("Who is known as the Prince of all Sayians?", ["Vegeta", "Goku", "Raditz", "Broly"]));
+
+//Shuffle the question bank
+questionBank = shuffle(questionBank);
+
+//console.log(fQuestion.correctAnswer());
+console.log(questionBank[0].correctAnswer());
 
 //Choose a game question
+
+
 //Set question
-gameQuestion = fQuestion;
+gameQuestion = questionBank.pop();
 
 //Display question
-displayQuestion(fQuestion);
+displayQuestion(gameQuestion);
 
 //When user answers the question
 $(".game-answer").on("click", function(){
@@ -23,7 +34,7 @@ $(".game-answer").on("click", function(){
     var guess = $(this).text();
     //console.log(guess);
     //go through answers
-    if(fQuestion.correctAnswer() == guess){
+    if(gameQuestion.correctAnswer() == guess){
         console.log("Correct!");
         rightCount++;
     } else {
