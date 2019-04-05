@@ -65,6 +65,13 @@ function shuffle(array) {
     return array;
 }
 
+function addToField(tag, divClass, text){
+    var questionFieldElement = $("<" + tag + ">");
+    questionFieldElement.addClass(divClass);
+    questionFieldElement.text(text);
+    return (questionFieldElement);
+}
+
 //Takes an array of answers for a question (first answer is correct)
 function makeQuestion(question, answers){
     var answersPush = [];
@@ -82,32 +89,25 @@ function makeQuestion(question, answers){
 }
 
 function outOfTime(){
-    //Do I need to clear the timeout if time up?
-    //clearTimeout(questionTimer);
     gameState = 3;
     timeUp = true;
     wrongCount++;
     resolveAnswer();
 }
 
-// //Fill questionBank
-// // var fQuestion = makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"]);
-
-// questionBank.push(makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"]));
-// questionBank.push(makeQuestion("Who killed Krillin on Planet Namek?", ["Freiza", "Piccolo", "Vegeta", "Captain Ginyu"]));
-// questionBank.push(makeQuestion("Who is known as the Prince of all Sayians?", ["Vegeta", "Goku", "Raditz", "Broly"]));
-
-// //Shuffle the question bank
-// questionBank = shuffle(questionBank);
-
-// //console.log(fQuestion.correctAnswer());
-// console.log(questionBank[0].correctAnswer());
-
 function resetGame(){
-    $("#question").text("");
-    for(var i = 0; i < ANSWERS_MAX; i++){
-        $("#answer-" + (i+1)).text("");
-    }
+    // $("#question").text("");
+    // for(var i = 0; i < ANSWERS_MAX; i++){
+    //     $("#answer-" + (i+1)).text("");
+    // }
+    $("#question-field").empty();
+
+    rightCount = 0;
+    wrongCount = 0;
+
+    var clickHere = $("<h2>");
+    clickHere.text("Click here to start!")
+    $("#question-field").append(clickHere);
 
     questionBank = [];
     questionBank.push(makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"]));
@@ -129,10 +129,22 @@ function displayQuestion(question){
 
     var gameAnswers = question.answers;
     gameAnswers = shuffle(gameAnswers);
-    $("#question").text(question.question);
+
+    //Display question
+    var questionDiv = $("<div>");
+    questionDiv.addClass("game-question");
+    questionDiv.text(question.question);
+    $("#question-field").append(questionDiv);
+
+    // $("#question").text(question.question);
     
+    //Display answers
     $.each(gameAnswers, function(i, answer){
-        $("#answer-" + (i+1)).text(answer.answer);        
+        // $("#answer-" + (i+1)).text(answer.answer);
+        var answerDiv = $("<div>");
+        answerDiv.addClass("game-answer");
+        answerDiv.text(answer.answer);
+        $("#question-field").append(answerDiv);
     });
     
     questionTimer = setTimeout(outOfTime, 1000 * 10);
@@ -152,23 +164,36 @@ function setQuestion(){
 //     setQuestion();
 // }
 
-//setQuestion();
-
-$("#start-button").on("click", function(){
+$("#question-field").on("click", function(){
     if(gameState == 1){
+        $("#question-field").empty();
         setQuestion();
         // gameState = 2;
         // $("#game-state").text("Game state: " + gameState);
     }
 });
 
+$("#start-button").on("click", function(){
+    if(gameState == 99){
+        resetGame();
+    }
+});
+
+
 function endGame(){
+    //Add final game values to Game Over screen
+    $("#question-field").append(addToField("h2", "", "FINAL SCORE"));
+    $("#question-field").append(addToField("h2", "", "Correct: " + rightCount));
+    $("#question-field").append(addToField("h2", "", "Wrong: " + wrongCount));
+    $("#question-field").append(addToField("h2", "", "Click the Restart button to try again!"));
+
     $("#game-result").text("GAME OVER");
     gameState = 99;
     $("#game-state").text("Game state: " + gameState);
 }
 
 function showAnswer(){
+    $("#question-field").empty();
     if(gameState == 4){
         if(questionBank.length > 0){
             answerTimer = setTimeout(setQuestion, 1000 * 5);
@@ -219,41 +244,9 @@ function gameAnswer(){
     }
 }
 
-
-
-
-
-
 //When user answers the question
-$(".game-answer").on("click", gameAnswer);
-
-//Show result state
-//Go here if answer clicked OR time expires
-//Logic to handle correct or incorrect answer
-//Cancel timer in this state before executing logic
-//CREATE FUNCTIONS FOR ALL GAME STATES
+$("#question-field").on("click", ".game-answer", gameAnswer);
 
 $(document).ready(function(){
     resetGame();
 });
-
-
-// var q1 = new Question();
-// var q2 = new Question("haha");
-
-// console.log(q2.answers);
-
-// //Create first question
-// var a1 = new Answer(true, "Goku");
-// var a2 = new Answer(false, "Batman and Spiderman");
-// var a3 = new Answer(false, "Batman");
-// var a4 = new Answer(false, "Spider-Man");
-
-// var answersPass = [];
-
-// answersPass.push(a1);
-// answersPass.push(a2);
-// answersPass.push(a3);
-// answersPass.push(a4);
-
-// var q3 = new Question(answersPass);
