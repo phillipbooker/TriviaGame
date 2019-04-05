@@ -3,3 +3,7 @@
     width: 750px;
     border: solid 1px black;
 }
+
+.answer-picture{
+    max-width: 150px;
+}
