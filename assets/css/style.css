@@ -16,19 +16,37 @@ body{
     padding: 15px;
     margin: auto;
     background-image: url("../images/background.png");
+    font-family: 'Orbitron', sans-serif;
 }
 
 main{
     text-align: center;
 }
 
+#game-state{
+    display: none;
+}
+
+#start-button{
+    display: none;
+    margin-top: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgb(71, 71, 71);
+    color: white;
+}
+
 #question-field{
     height: 400px;
-    width: 750px;
+    max-width: 750px;
     color: white;
     border: solid 1px black;
     border-radius: 15px;
     margin: 25px auto;
+    margin-bottom: 5px;
     padding-top: 25px;
     background-image: url("../images/fighters.png");
     /* object-fit: contain; */
@@ -46,7 +64,24 @@ main{
 }
 
 .answer-picture{
-    max-width: 150px;
+    max-width: 250px;
+    border: solid 1px gray;
+}
+
+.right-wrong{
+    margin-top: 15px;
+}
+
+.question-result{
+    background: white;
+    color: black;
+    border: solid 1px black;
+    border-radius: 25px;
+    padding: 20px 0px;
+    max-width: 350px;
+    font-weight: bold;
+    margin: auto;
+    margin-bottom: 25px;
 }
 
 .game-question{
@@ -55,7 +90,7 @@ main{
     border: solid 1px black;
     border-radius: 25px;
     padding: 20px 0px;
-    width: 400px;
+    max-width: 500px;
     font-weight: bold;
     margin: auto;
     margin-bottom: 25px;
@@ -70,4 +105,30 @@ main{
     padding: 15px 0px;
     /* margin: auto; */
     margin: 15px auto;
+}
+
+.scoreboard{
+    background: white;
+    color: black;
+    border: solid 1px black;
+    border-radius: 25px;
+    padding: 25px;
+    width: 400px;
+    text-align: left;
+    font-weight: bold;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.restart-message{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.game-over{
+    margin-top: 25px;
+    margin-bottom: 0px;
+    text-align: center;
+    bottom: 0px;
 }

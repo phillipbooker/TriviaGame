@@ -166,7 +166,6 @@ function displayQuestion(questionPass){
     counter = 30;
     questionTimer = setInterval(countDown, 1000 * 1);
     $("#timer").text("Time remaining: " + counter);
-    //questionTimer = setTimeout(outOfTime, 1000 * 10);
     console.log("question displayed: " + questionTimer);
 }
 
@@ -193,6 +192,7 @@ $("#question-field").on("click", function(){
 //Resets game after Game Over
 $("#start-button").on("click", function(){
     if(gameState == 99){
+        $("#start-button").css("display", "none");
         resetGame();
     }
 });
@@ -200,16 +200,24 @@ $("#start-button").on("click", function(){
 
 function endGame(){
     $("#question-field").empty();
+    $("#timer").text("");
+
+    var scoreboard = $("<div>");
+    scoreboard.addClass("scoreboard");
 
     //Add final game values to Game Over screen
-    $("#question-field").append(addToField("h2", "pill", "FINAL SCORE"));
-    $("#question-field").append(addToField("h2", "pill", "Correct: " + rightCount));
-    $("#question-field").append(addToField("h2", "pill", "Wrong: " + wrongCount));
-    $("#question-field").append(addToField("h2", "pill", "Click the Restart button to try again!"));
+    scoreboard.append(addToField("p", "", "FINAL SCORE"));
+    scoreboard.append(addToField("p", "", "Correct: " + rightCount));
+    scoreboard.append(addToField("p", "", "Wrong: " + wrongCount));
+    
 
-    $("#question-field").append(addToField("h2", "pill", "GAME OVER"));
-    // $("#game-result").text("GAME OVER");
+    scoreboard.append(addToField("h2", "game-over", "GAME OVER"));
+
+    scoreboard.append(addToField("p", "restart-message", "Click the Restart button to try again!"));
+
+    $("#question-field").append(scoreboard);
     gameState = 99;
+    $("#start-button").css("display", "inline-block");
     $("#game-state").text("Game state: " + gameState);
 }
 
@@ -222,19 +230,21 @@ function resolveAnswer(){
 
         //Stops answer timer
         clearInterval(questionTimer);
+
+        var questionResult = $("<div>");
+        questionResult.addClass("question-result");
         
         if(timeUp){
-            $("#question-field").append(addToField("h2", "", "Time's up!"));
-            // $("#game-result").text("Time's up...");
+            questionResult.append(addToField("h2", "", "Time's up!"));
         } else{
             if(playerCorrect){
-                $("#question-field").append(addToField("h2", "", "You got it!"));
-                // $("#game-result").text("You got it!");
+                questionResult.append(addToField("h2", "", "You got it!"));
             } else {
-                $("#question-field").append(addToField("h2", "", "Wrong answer..."));
-                // $("#game-result").text("Wrong answer...");
+                questionResult.append(addToField("h2", "", "Wrong answer..."));
             }
         }
+
+        // $("#question-field").append(questionResult);
 
         //Unused state / answer has been displayed
         gameState = 4;
@@ -242,7 +252,8 @@ function resolveAnswer(){
 
         
         //Show player correct answer and accompanying picture
-        $("#question-field").append(addToField("h2", "", "Correct answer: " + gameQuestion.correctAnswer()));
+        $(questionResult).append(addToField("p", "right-wrong", "Correct answer: " + gameQuestion.correctAnswer()));
+        $("#question-field").append(questionResult);
 
         var answerPicture = $("<img>");
         answerPicture.attr("src", gameQuestion.picture);
