@@ -4,6 +4,7 @@ var gameQuestion;
 var gameState;
 var rightCount;
 var wrongCount;
+var counter;
 
 //Boolean - if true, player guessed correctly
 var playerCorrect;
@@ -91,6 +92,18 @@ function makeQuestion(question, answers, picture){
     return(question);
 }
 
+//Decrements the question timer
+function countDown(){
+    
+    if(counter > 0){
+        counter--;
+    } else{
+        clearInterval(questionTimer);
+        outOfTime();
+    }
+    $("#timer").text("Time remaining: " + counter);
+}
+
 //When player is out of time set timeUp to true and increase wrongCount
 function outOfTime(){
     gameState = 3;
@@ -106,6 +119,7 @@ function resetGame(){
 
     rightCount = 0;
     wrongCount = 0;
+    counter = 30;
     timeUp = false;
 
     //Tell user to click in the game field to start game
@@ -146,12 +160,18 @@ function displayQuestion(questionPass){
     });
     
     //Kick off the question timer
-    questionTimer = setTimeout(outOfTime, 1000 * 10);
+    //Reset question timer
+    counter = 30;
+    questionTimer = setInterval(countDown, 1000 * 1);
+    $("#timer").text("Time remaining: " + counter);
+    //questionTimer = setTimeout(outOfTime, 1000 * 10);
     console.log("question displayed: " + questionTimer);
 }
 
 //Chooses a game question from the bank
 function setQuestion(){
+    
+
     $("#question-field").empty();
     //Set question
     gameQuestion = questionBank.pop();
@@ -196,9 +216,10 @@ function resolveAnswer(){
     //Show answer state
     if(gameState == 3){
         $("#question-field").empty();
+        $("#timer").text("");
 
         //Stops answer timer
-        clearTimeout(questionTimer);
+        clearInterval(questionTimer);
         
         if(timeUp){
             $("#question-field").append(addToField("h2", "", "Time's up!"));
