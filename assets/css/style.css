@@ -113,7 +113,7 @@ main{
     border: solid 1px black;
     border-radius: 25px;
     padding: 25px;
-    width: 400px;
+    max-width: 400px;
     text-align: left;
     font-weight: bold;
     margin: auto;
