@@ -27,6 +27,10 @@ main{
     display: none;
 }
 
+.starter{
+    padding-top: 15px;
+}
+
 #start-button{
     display: none;
     margin-top: 10px;
