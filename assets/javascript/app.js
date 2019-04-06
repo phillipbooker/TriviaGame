@@ -116,6 +116,7 @@ function outOfTime(){
 function resetGame(){
     //Empty the game field
     $("#question-field").empty();
+    $("#timer").text("");
 
     rightCount = 0;
     wrongCount = 0;
@@ -125,6 +126,7 @@ function resetGame(){
     //Tell user to click in the game field to start game
     var clickHere = $("<h2>");
     clickHere.text("Click here to start!")
+    clickHere.addClass("starter");
     $("#question-field").append(clickHere);
 
     //Initialize the question bank
@@ -200,12 +202,12 @@ function endGame(){
     $("#question-field").empty();
 
     //Add final game values to Game Over screen
-    $("#question-field").append(addToField("h2", "", "FINAL SCORE"));
-    $("#question-field").append(addToField("h2", "", "Correct: " + rightCount));
-    $("#question-field").append(addToField("h2", "", "Wrong: " + wrongCount));
-    $("#question-field").append(addToField("h2", "", "Click the Restart button to try again!"));
+    $("#question-field").append(addToField("h2", "pill", "FINAL SCORE"));
+    $("#question-field").append(addToField("h2", "pill", "Correct: " + rightCount));
+    $("#question-field").append(addToField("h2", "pill", "Wrong: " + wrongCount));
+    $("#question-field").append(addToField("h2", "pill", "Click the Restart button to try again!"));
 
-    $("#question-field").append(addToField("h2", "", "GAME OVER"));
+    $("#question-field").append(addToField("h2", "pill", "GAME OVER"));
     // $("#game-result").text("GAME OVER");
     gameState = 99;
     $("#game-state").text("Game state: " + gameState);
