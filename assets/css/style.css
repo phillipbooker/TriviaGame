@@ -48,20 +48,22 @@ main{
     margin: 25px auto;
     margin-bottom: 5px;
     padding-top: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
     background-image: url("../images/fighters.png");
     /* object-fit: contain; */
     background-size: cover;
 }
 
-.pill{
+/* .pill{
     background: white;
     color: black;
     border: solid 1px black;
     border-radius: 25px;
-    padding: 15px 0px;
+    padding: 15px 5px;
     width: 300px;
     margin: 5px auto;
-}
+} */
 
 .answer-picture{
     max-width: 250px;
@@ -77,7 +79,7 @@ main{
     color: black;
     border: solid 1px black;
     border-radius: 25px;
-    padding: 20px 0px;
+    padding: 20px 5px;
     max-width: 350px;
     font-weight: bold;
     margin: auto;
@@ -89,7 +91,7 @@ main{
     color: black;
     border: solid 1px black;
     border-radius: 25px;
-    padding: 20px 0px;
+    padding: 20px 5px;
     max-width: 500px;
     font-weight: bold;
     margin: auto;
@@ -113,6 +115,8 @@ main{
     border: solid 1px black;
     border-radius: 25px;
     padding: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
     max-width: 400px;
     text-align: left;
     font-weight: bold;
