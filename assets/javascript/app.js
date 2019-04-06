@@ -132,7 +132,7 @@ function resetGame(){
     //Initialize the question bank
     questionBank = [];
     questionBank.push(makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"], "assets/images/bubbles.png"));
-    questionBank.push(makeQuestion("Who killed Krillin on Planet Namek?", ["Freiza", "Piccolo", "Vegeta", "Captain Ginyu"], "assets/images/frieza.gif"));
+    questionBank.push(makeQuestion("Who killed Krillin on Planet Namek?", ["Frieza", "Piccolo", "Vegeta", "Captain Ginyu"], "assets/images/frieza.gif"));
     questionBank.push(makeQuestion("Who is known as the Prince of all Sayians?", ["Vegeta", "Goku", "Raditz", "Broly"], "assets/images/vegeta.jpeg"));
 
     //Shuffle the question bank
