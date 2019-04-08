@@ -133,7 +133,15 @@ function resetGame(){
     questionBank = [];
     questionBank.push(makeQuestion("What is the name of the monkey on King Kai's planet?", ["Bubbles", "Gregory", "Puar", "Oolong"], "assets/images/bubbles.png"));
     questionBank.push(makeQuestion("Who killed Krillin on Planet Namek?", ["Frieza", "Piccolo", "Vegeta", "Captain Ginyu"], "assets/images/frieza.gif"));
-    questionBank.push(makeQuestion("Who is known as the Prince of all Sayians?", ["Vegeta", "Goku", "Raditz", "Broly"], "assets/images/vegeta.jpeg"));
+    questionBank.push(makeQuestion("Who is known as the 'Prince of all Sayians'?", ["Vegeta", "Goku", "Raditz", "Broly"], "assets/images/vegeta.gif"));
+
+    questionBank.push(makeQuestion("Who was Goku fighting when he first went Super Saiyan 3?", ["Majin Buu", "Cell", "Frieza", "Android 18"], "assets/images/ssj3.gif"));
+    questionBank.push(makeQuestion("Where did Goku learn instant transmission?", ["Yardrat", "Namek", "Planet Vegeta", "Earth"], "assets/images/instant.gif"));
+    questionBank.push(makeQuestion("Who kills Goku for the first time?", ["Piccolo", "Raditz", "Vegeta", "Cell"], "assets/images/piccolo.gif"));
+    questionBank.push(makeQuestion("Who kills Cell?", ["Gohan", "Goku", "Vegeta", "Trunks"], "assets/images/gohan.gif"));
+    questionBank.push(makeQuestion("One year in the Hyperbolic Time Chamber is equivalent to what amount of time outside of the chamber?", ["1 day", "1 hour", "1 week", "1 month"], "assets/images/hyperbolic.jpg"));
+    questionBank.push(makeQuestion("What happens when Dabura spits on someone?", ["They turn to stone", "They melt", "They explode", "They fall asleep"], "assets/images/dabura.jpg"));
+    questionBank.push(makeQuestion("Which of these sports is Yamcha known to play?", ["Baseball", "Soccer", "Basketball", "Football"], "assets/images/yamcha.jpg"));
 
     //Shuffle the question bank
     questionBank = shuffle(questionBank);
